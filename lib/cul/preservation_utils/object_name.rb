@@ -4,7 +4,7 @@ require 'pathname'
 require 'stringex'
 
 module Cul::PreservationUtils::ObjectName
-  def say_hello
+  def self.say_hello
     puts 'hello from ObjectName module!'
   end
 
