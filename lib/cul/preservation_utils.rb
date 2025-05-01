@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "preservation_utils/version"
+require_relative 'preservation_utils/version'
 
 module Cul
   module PreservationUtils
