@@ -8,9 +8,6 @@ gemspec
 gem 'irb'
 gem 'rake', '~> 13.0'
 
-# Unicode to ASCII transliteration [https://rubygems.org/gems/stringex/]
-gem 'stringex', '~> 2.8', '>= 2.8.6'
-
 gem 'rspec', '~> 3.0'
 
 gem 'rubocop', '~> 1.21'

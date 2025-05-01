@@ -38,4 +38,6 @@ Gem::Specification.new do |spec|
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
   spec.add_dependency 'zeitwerk', '~>2.7'
+  # Unicode to ASCII transliteration [https://rubygems.org/gems/stringex/]
+  spec.add_dependency 'stringex', '~> 2.8', '>= 2.8.6'
 end
