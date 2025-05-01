@@ -4,6 +4,10 @@ require 'pathname'
 require 'stringex'
 
 module Cul::PreservationUtils::ObjectName
+  def say_hello
+    puts 'hello from ObjectName module!'
+  end
+
   # The following code was taken from the ATC app's Atc::Utils::ObjectKeyNameUtils module
 
   # About Cloud Storage objects: https://cloud.google.com/storage/docs/objects
