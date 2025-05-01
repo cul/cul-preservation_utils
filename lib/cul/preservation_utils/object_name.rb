@@ -3,6 +3,9 @@
 require 'pathname'
 require 'stringex'
 
+# in this usage, we will consider the paths here as generic paths
+# So that both local filesystems and (hypothetically) the cloud FS will be aligned
+# maybe name it: Path, FilePath ...? --> FilePath
 module Cul::PreservationUtils::ObjectName
   def self.say_hello
     puts 'hello from ObjectName module!'
