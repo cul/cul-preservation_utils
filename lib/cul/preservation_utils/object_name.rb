@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Cul::PreservationUtils::ObjectNameUtils
+module Cul::PreservationUtils::ObjectName
   # The following code was taken from the ATC app's Atc::Utils::ObjectKeyNameUtils module
 
   # About Cloud Storage objects: https://cloud.google.com/storage/docs/objects
@@ -9,8 +9,6 @@ module Cul::PreservationUtils::ObjectNameUtils
   # AWS - Creating object key names:
   # https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html
   # As seen in the title for the above page, an object in AWS S3 has a key name (or key)
-  # So fcd1 decided to call this module ObjectKeyNameUtils to try and cover both naming
-  # conventions. However, it's just a name and fcd1 is cool if module is renamed
 
   DISALLOWED_ASCII_REGEX = '[^-a-zA-Z0-9_.()]'
 
