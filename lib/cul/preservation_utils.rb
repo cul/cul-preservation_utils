@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'preservation_utils/version'
+require 'zeitwerk'
+loader = Zeitwerk::Loader.for_gem
+loader.setup # ready!
+
+# require_relative 'preservation_utils/version'
 
 module Cul
   module PreservationUtils
