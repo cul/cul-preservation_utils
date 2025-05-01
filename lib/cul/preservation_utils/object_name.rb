@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'pathname'
+require 'stringex'
+
 module Cul::PreservationUtils::ObjectName
   # The following code was taken from the ATC app's Atc::Utils::ObjectKeyNameUtils module
 
@@ -35,7 +38,7 @@ module Cul::PreservationUtils::ObjectName
   end
 
   def self.remediate_key_name(filepath_key_name, unavailable_key_names = [])
-    if unavailable_key_names.exclude?(filepath_key_name) && self.valid_key_name?(filepath_key_name)
+    if !unavailable_key_names.include?(filepath_key_name) && self.valid_key_name?(filepath_key_name)
       return filepath_key_name
     end
 
