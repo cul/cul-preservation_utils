@@ -27,12 +27,13 @@ module Cul::PreservationUtils::FilePath
 
   DISALLOWED_ASCII_REGEX = '[^-a-zA-Z0-9_.()]'
 
-  def self.valid_key_name?(path_filename)
+  def self.valid_file_path?(path_filename)
     return false if ['', '.', '..', '/'].include? path_filename
 
     pathname = Pathname.new(path_filename)
 
     # a relative path is invalid
+    # todo : doesn't this code do the opposite of that?
     return false if pathname.absolute?
 
     path_to_file, filename = pathname.split
@@ -49,8 +50,8 @@ module Cul::PreservationUtils::FilePath
     true
   end
 
-  def self.remediate_key_name(filepath_key_name, unavailable_key_names = [])
-    if !unavailable_key_names.include?(filepath_key_name) && self.valid_key_name?(filepath_key_name)
+  def self.remediate_file_path(filepath_key_name, unavailable_key_names = [])
+    if !unavailable_key_names.include?(filepath_key_name) && self.valid_file_path?(filepath_key_name)
       return filepath_key_name
     end
 
