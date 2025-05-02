@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../../lib/cul/preservation_utils/object_name'
+# Todo : whyyyyyyyyyyyyyyyyyyyyyy???!?!?!?!?!?!?!?!?!?!?!??!?! Zeitloader :c
+require_relative '../../../lib/cul/preservation_utils/file_path'
 
-RSpec.describe Cul::PreservationUtils::ObjectName do
+RSpec.describe Cul::PreservationUtils::FilePath do
   let(:sample_valid_path_key_names) do
     [
       'file.txt',

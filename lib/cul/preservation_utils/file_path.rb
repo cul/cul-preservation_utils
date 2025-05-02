@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
+puts "file_path.rb was loaded!"
+
 require 'pathname'
 require 'stringex'
 
 # in this usage, we will consider the paths here as generic paths
 # So that both local filesystems and (hypothetically) the cloud FS will be aligned
 # maybe name it: Path, FilePath ...? --> FilePath
-module Cul::PreservationUtils::ObjectName
+module Cul::PreservationUtils::FilePath
   def self.say_hello
-    puts 'hello from ObjectName module!'
+    puts 'hello from FilePath module!'
   end
 
   # The following code was taken from the ATC app's Atc::Utils::ObjectKeyNameUtils module
