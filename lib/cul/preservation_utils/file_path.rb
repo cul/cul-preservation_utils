@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-puts "file_path.rb was loaded!"
-
 require 'pathname'
 require 'stringex'
 
