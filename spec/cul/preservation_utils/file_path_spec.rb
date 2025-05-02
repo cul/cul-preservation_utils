@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Todo : whyyyyyyyyyyyyyyyyyyyyyy???!?!?!?!?!?!?!?!?!?!?!??!?! Zeitloader :c
+# Todo : Why, Zeitloader? Why?!!! :c
 require_relative '../../../lib/cul/preservation_utils/file_path'
 
 RSpec.describe Cul::PreservationUtils::FilePath do

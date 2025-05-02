@@ -2,10 +2,6 @@
 
 require 'cul/preservation_utils'
 
-puts '(from spec helper) HELOOLOOLO'
-puts Cul::PreservationUtils.name
-puts Cul::PreservationUtils::VERSION
-
 RSpec.configure do |config|
   # This allows you to limit a spec run to individual examples or groups
   # you care about by tagging them with `:focus` metadata. When nothing
