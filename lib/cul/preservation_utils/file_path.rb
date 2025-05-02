@@ -8,11 +8,8 @@ require 'stringex'
 # include any characters that may be problematic for preservation objects that
 # will be stored in Google or Amazon cloud services.
 # Additionally, this has the benefit of having matching names in both local
-# copies of such Preservation objects and copies stored on the cloud. 
+# copies of such Preservation objects and copies stored on the cloud.
 module Cul::PreservationUtils::FilePath
-  def self.say_hello
-    puts 'hello from FilePath module!'
-  end
   # The following code was taken from the ATC app's Atc::Utils::ObjectKeyNameUtils module
   # Credit to fcd1
 
@@ -48,14 +45,12 @@ module Cul::PreservationUtils::FilePath
     true
   end
 
-  def self.remediate_file_path(filepath_key_name, unavailable_key_names = [])
-    if !unavailable_key_names.include?(filepath_key_name) && self.valid_file_path?(filepath_key_name)
-      return filepath_key_name
-    end
+  def self.remediate_file_path(filepath, unavailable_file_paths = []) # rubocop:disable Metrics/AbcSize
+    return filepath if !unavailable_file_paths.include?(filepath) && self.valid_file_path?(filepath)
 
-    self.argument_check(filepath_key_name)
+    self.argument_check(filepath)
 
-    pathname = Pathname.new(filepath_key_name)
+    pathname = Pathname.new(filepath)
 
     remediated_pathname = Pathname.new('')
     path_to_file, filename = pathname.split
@@ -66,15 +61,15 @@ module Cul::PreservationUtils::FilePath
     remediated_key_name = self.remediate_path(path_to_file, remediated_pathname).join(filename_valid_ascii).to_s
 
     # no collisions
-    return remediated_key_name unless unavailable_key_names.include? remediated_key_name
+    return remediated_key_name unless unavailable_file_paths.include? remediated_key_name
 
     # handle collisions
-    self.handle_collision(remediated_key_name, unavailable_key_names)
+    self.handle_collision(remediated_key_name, unavailable_file_paths)
   end
 
-  def self.argument_check(filepath_key_name)
-    raise ArgumentError, "Bad argument: '#{filepath_key_name}'" if ['', '.', '..', '/'].include? filepath_key_name
-    raise ArgumentError, 'Bad argument: absolute path' if filepath_key_name.start_with?('/')
+  def self.argument_check(filepath_key)
+    raise ArgumentError, "Bad argument: '#{filepath_key}'" if ['', '.', '..', '/'].include? filepath_key
+    raise ArgumentError, 'Bad argument: absolute path' if filepath_key.start_with?('/')
   end
 
   def self.remediate_path(path_to_file, remediated_pathname)
@@ -86,15 +81,15 @@ module Cul::PreservationUtils::FilePath
     remediated_pathname
   end
 
-  def self.handle_collision(remediated_key_name, unavailable_key_names)
-    pathname = Pathname.new(remediated_key_name)
+  def self.handle_collision(remediated_file_path, unavailable_file_path)
+    pathname = Pathname.new(remediated_file_path)
     base = pathname.to_s.delete_suffix(pathname.extname)
-    new_remediated_key_name = "#{base}_1#{pathname.extname}"
+    new_remediated_file_path = "#{base}_1#{pathname.extname}"
     suffix_num = 1
-    while unavailable_key_names.include? new_remediated_key_name
+    while unavailable_file_path.include? new_remediated_file_path
       suffix_num += 1
-      new_remediated_key_name = "#{base}_#{suffix_num}#{pathname.extname}"
+      new_remediated_file_path = "#{base}_#{suffix_num}#{pathname.extname}"
     end
-    new_remediated_key_name
+    new_remediated_file_path
   end
 end

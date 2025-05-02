@@ -3,7 +3,6 @@ PATH
   specs:
     cul-preservation_utils (0.1.0)
       stringex (~> 2.8, >= 2.8.6)
-      zeitwerk (~> 2.7)
 
 GEM
   remote: https://rubygems.org/
@@ -127,7 +126,6 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
     uri (1.0.3)
-    zeitwerk (2.7.2)
 
 PLATFORMS
   arm64-darwin-23
