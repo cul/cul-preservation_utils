@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'cul'
+require 'cul/preservation_utils'
 
 RSpec.configure do |config|
   # This allows you to limit a spec run to individual examples or groups
