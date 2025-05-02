@@ -9,3 +9,6 @@
 
 # rspec failure tracking
 .rspec_status
+
+# Do not push the built gem itself to GH
+*.gem
