@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # require_relative 'preservation_utils/file_path'
+require_relative '../cul'
 require_relative 'preservation_utils/file_path'
 
 module Cul
