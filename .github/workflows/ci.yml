@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ '*' ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.2.2'
+          - '3.3.7'
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1 # this installs ruby in the running container and runs 'bundle install'
+        # If the gemfile specifies a ruby version, this would cause error when they don't match
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run rubocop
+        run: bundle exec rubocop
+      - name: Run rspec
+        run: bundle exec rspec
