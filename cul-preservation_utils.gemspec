@@ -32,6 +32,6 @@ Gem::Specification.new do |spec|
   end
 
   # Unicode to ASCII transliteration [https://rubygems.org/gems/stringex/]
-  spec.add_dependency 'stringex', '~> 2.8', '>= 2.8.6'
   spec.add_dependency 'ostruct', '~> 0.1.0'
+  spec.add_dependency 'stringex', '~> 2.8', '>= 2.8.6'
 end
