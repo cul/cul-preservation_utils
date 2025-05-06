@@ -3,3 +3,6 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 3.1 # TODO change to lower ruby version (match folio client)?
+
+Rails/Output:
+  Enabled: false
