@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cul-preservation_utils (0.1.0)
+    cul-preservation_utils (0.1.4)
       stringex (~> 2.8, >= 2.8.6)
 
 GEM
