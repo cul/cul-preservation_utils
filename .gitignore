@@ -12,3 +12,5 @@
 
 # Do not push the built gem itself to GH
 *.gem
+*.gz
+.DS_Store
