@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require_relative '../preservation_utils'
-
 require 'pathname'
 require 'stringex'
 
