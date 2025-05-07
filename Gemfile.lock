@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cul-preservation_utils (0.1.6)
+    cul-preservation_utils (0.1.7)
       ostruct (~> 0.1.0)
       stringex (~> 2.8, >= 2.8.6)
 
