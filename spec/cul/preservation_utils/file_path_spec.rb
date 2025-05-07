@@ -25,6 +25,8 @@ RSpec.describe Cul::PreservationUtils::FilePath do
     ]
   end
 
+  let(:test_instance) { Class.new.include(described_class).new }
+
   describe '.valid_file_path?' do
     let(:sample_invalid_file_paths) do
       [
@@ -52,13 +54,13 @@ RSpec.describe Cul::PreservationUtils::FilePath do
 
     it 'returns false for all sample invalid paths' do
       sample_invalid_file_paths.each do |path|
-        expect(described_class.valid_file_path?(path)).to (be false), -> { "Test failed on path '#{path}'" }
+        expect(test_instance.valid_file_path?(path)).to (be false), -> { "Test failed on path '#{path}'" }
       end
     end
 
     it 'returns true for all sample valid paths' do
       sample_valid_file_paths.each do |path|
-        expect(described_class.valid_file_path?(path)).to (be true), -> { "Test failed on path '#{path}'" }
+        expect(test_instance.valid_file_path?(path)).to (be true), -> { "Test failed on path '#{path}'" }
       end
     end
   end
@@ -77,28 +79,28 @@ RSpec.describe Cul::PreservationUtils::FilePath do
     end
 
     it 'raise an exception if given an absolute path' do
-      expect { described_class.remediate_file_path('/top_dir/sub_dir/file.txt') }.to raise_error(ArgumentError)
+      expect { test_instance.remediate_file_path('/top_dir/sub_dir/file.txt') }.to raise_error(ArgumentError)
     end
 
     it "raise an exception for '/'" do
-      expect { described_class.remediate_file_path('/') }.to raise_error(ArgumentError)
+      expect { test_instance.remediate_file_path('/') }.to raise_error(ArgumentError)
     end
 
     it "raise an exception for ''" do
-      expect { described_class.remediate_file_path('') }.to raise_error(ArgumentError)
+      expect { test_instance.remediate_file_path('') }.to raise_error(ArgumentError)
     end
 
     it "raise an exception for '.'" do
-      expect { described_class.remediate_file_path('.') }.to raise_error(ArgumentError)
+      expect { test_instance.remediate_file_path('.') }.to raise_error(ArgumentError)
     end
 
     it "raise an exception for '..'" do
-      expect { described_class.remediate_file_path('..') }.to raise_error(ArgumentError)
+      expect { test_instance.remediate_file_path('..') }.to raise_error(ArgumentError)
     end
 
     it 'remediates path key names as expected' do
       sample_remediated_file_paths.each do |path|
-        remediated_key = described_class.remediate_file_path(path[0])
+        remediated_key = test_instance.remediate_file_path(path[0])
         expect(remediated_key).to (eql path[1]), lambda {
           "original '#{path[0]}', expected '#{path[1]}', actual '#{remediated_key}'"
         }
@@ -107,18 +109,18 @@ RSpec.describe Cul::PreservationUtils::FilePath do
 
     it 'returns original path key name path if no remediation needed' do
       sample_valid_file_paths.each do |path|
-        expect(described_class.remediate_file_path(path)).to eql path
+        expect(test_instance.remediate_file_path(path)).to eql path
       end
     end
 
     it "Collision: returns original valid key name with suffix '_1' before extension: 'top_dir/sub_dir/file_1.txt'" do
-      expect(described_class.remediate_file_path(
+      expect(test_instance.remediate_file_path(
                'top_dir/sub_dir/file.txt', ['top_dir/sub_dir/file.txt']
              )).to eql 'top_dir/sub_dir/file_1.txt'
     end
 
     it "Collision: returns original valid key name with suffix '_2': 'top_dir/sub_dir/file_2.txt'" do
-      expect(described_class.remediate_file_path(
+      expect(test_instance.remediate_file_path(
                'top_dir/sub_dir/file.txt', ['top_dir/sub_dir/file.txt', 'top_dir/sub_dir/file_1.txt']
              )).to eql 'top_dir/sub_dir/file_2.txt'
     end
